@@ -59,12 +59,19 @@ Nothing to do. Open the repo with either agent and the symlinked directories are
 ### Install them globally
 
 ```sh
+git clone https://github.com/MishukAdhikari/resume-tailor.git
+cd resume-tailor
 ./install.sh
 ```
 
 Symlinks each skill into `~/.claude/skills/` and `~/.agents/skills/`, so edits here take
 effect immediately in both agents with no copying step. Run `./install.sh --copy` instead
 if you want independent copies, and `./install.sh --uninstall` to remove them.
+
+The installer is non-destructive: it never overwrites an existing file, directory, or
+link. Uninstall removes only links that point to this checkout and copies carrying this
+installer's ownership marker. Set `CLAUDE_SKILLS_DIR` or `CODEX_SKILLS_DIR` to override a
+destination.
 
 ### Install by hand
 
@@ -79,3 +86,10 @@ Frontmatter carries `name` and `description` only. Both agents use `description`
 whether to load the skill, so it has to say **what the skill does and when to reach for
 it**, in terms a user would actually type. A description that only names the topic will not
 fire.
+
+Run `./scripts/validate.sh` before committing. It checks the discovery symlinks,
+frontmatter, naming, prose rules, shell syntax, idempotent installs, safe conflict handling,
+and uninstall ownership. GitHub Actions runs the same validation on pushes and pull requests.
+
+Codex paths and symlink support follow the current
+[official skill documentation](https://developers.openai.com/codex/skills/).

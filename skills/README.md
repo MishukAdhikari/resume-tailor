@@ -51,6 +51,9 @@ Symlinks each skill into `~/.claude/skills/` and `~/.agents/skills/`, so edits h
 effect immediately in both agents with no copying step. Run `./install.sh --copy` instead
 if you want independent copies, and `./install.sh --uninstall` to remove them.
 
+The installer never overwrites an existing skill. Uninstall removes only links that point
+to this checkout and copies marked as installed by this repo.
+
 ### Install by hand
 
 ```sh
@@ -64,3 +67,5 @@ Frontmatter carries `name` and `description` only. Both agents use `description`
 whether to load the skill, so it has to say **what the skill does and when to reach for
 it**, in terms a user would actually type. A description that only names the topic will not
 fire.
+
+From the repository root, run `./scripts/validate.sh` before committing.

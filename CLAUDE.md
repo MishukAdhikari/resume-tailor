@@ -34,9 +34,9 @@ duplicates. Never resolve a symlink into a real directory: the copies will drift
 
 ## Verifying a change
 
-There is no test suite. Before committing:
+Before committing:
 
-1. `head -5 skills/*/SKILL.md` and confirm the frontmatter parses and `name` matches the
-   directory.
-2. Read the changed skill start to finish and ask whether an agent could follow it without
+1. Run `./scripts/validate.sh`. It checks skill structure, frontmatter, discovery symlinks,
+   shell syntax, installer idempotency, conflict safety, and owned uninstall behavior.
+2. Read every changed skill start to finish and ask whether an agent could follow it without
    already knowing the answer.
